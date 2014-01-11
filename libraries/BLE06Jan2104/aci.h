@@ -121,7 +121,7 @@
  * @enum aci_pipe_store_t
  * @brief Storage type identifiers: local and remote
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_STORE_INVALID = 0x0,
   ACI_STORE_LOCAL= 0x01,
@@ -132,7 +132,7 @@ typedef enum
  * @enum aci_pipe_type_t
  * @brief Pipe types
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_TX_BROADCAST = 0x0001,
   ACI_TX           = 0x0002,
@@ -151,7 +151,7 @@ typedef enum
  * @enum aci_bd_addr_type_t
  * @brief Bluetooth Address types
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_BD_ADDR_TYPE_INVALID  = 0x00,
   ACI_BD_ADDR_TYPE_PUBLIC  = 0x01,
@@ -164,7 +164,7 @@ typedef enum
  * @enum aci_device_output_power_t
  * @brief Radio output power levels
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_DEVICE_OUTPUT_POWER_MINUS_18DBM = 0x00, /**< Output power set to -18dBm */
   ACI_DEVICE_OUTPUT_POWER_MINUS_12DBM = 0x01, /**< Output power set to -12dBm */
@@ -176,7 +176,7 @@ typedef enum
  * @enum aci_device_operation_mode_t
  * @brief Device operation modes
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_DEVICE_INVALID   =0x00,
   ACI_DEVICE_TEST      =0x01,
@@ -189,7 +189,7 @@ typedef enum
  * @enum aci_disconnect_reason_t
  * @brief Reason enumeration for ACI_CMD_DISCONNECT
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_REASON_TERMINATE      =0x01, /**< Use this to disconnect (does a terminate request), you need to wait for the "disconnected" event */
   ACI_REASON_BAD_TIMING     =0x02 /*<Use this to disconnect and inform the peer, that the timing on the link is not acceptable for the device, you need to wait for the "disconnected" event */
@@ -199,7 +199,7 @@ typedef enum
  * @enum aci_test_mode_change_t
  * @brief Device test mode control
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_TEST_MODE_DTM_UART    = 0x01,
   ACI_TEST_MODE_DTM_ACI     = 0x02,
@@ -211,7 +211,7 @@ typedef enum
  * @enum aci_permissions_t
  * @brief Data store permissions
  */
-typedef enum 
+typedef enum __attribute__ ((__packed__))
 {
   ACI_PERMISSIONS_NONE               =0x00,
   ACI_PERMISSIONS_LINK_AUTHENTICATED =0x01
@@ -228,7 +228,7 @@ typedef enum
  * @struct aci_ll_conn_params_t
  * @brief Link Layer Connection Parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint16_t min_conn_interval;   /**< Minimum connection interval requested from peer */
     #define ACI_PPCP_MIN_CONN_INTVL_NONE  0xFFFF
@@ -305,7 +305,7 @@ typedef struct
  * @struct aci_tx_data_t
  * @brief Generic ACI transmit data structure
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t pipe_number;
   uint8_t aci_data[ACI_PIPE_TX_DATA_MAX_LEN];
@@ -315,7 +315,7 @@ typedef struct
  * @struct aci_rx_data_t
  * @brief Generic ACI receive data structure
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t pipe_number;
   uint8_t aci_data[ACI_PIPE_RX_DATA_MAX_LEN];
@@ -325,7 +325,7 @@ typedef struct
  * @enum aci_hw_error_t
  * @brief Hardware Error codes
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_HW_ERROR_NONE     = 0x00,
   ACI_HW_ERROR_FATAL    = 0x01
@@ -335,7 +335,7 @@ typedef enum
  * @enum aci_clock_accuracy_t
  * @brief Bluetooth Low Energy Clock Accuracy
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_CLOCK_ACCURACY_500_PPM = 0x00,
   ACI_CLOCK_ACCURACY_250_PPM = 0x01,
@@ -351,7 +351,7 @@ typedef enum
  * @enum aci_app_latency_mode_t
  * @brief Application latency modes
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_APP_LATENCY_DISABLE = 0,
   ACI_APP_LATENCY_ENABLE = 1
@@ -361,7 +361,7 @@ typedef enum
  * @enum gatt_format_t
  * @brief GATT format definitions
  */
-typedef enum 
+typedef enum __attribute__ ((__packed__))
 {
   ACI_GATT_FORMAT_NONE        = 0x00, /**< No characteristic format available */
   ACI_GATT_FORMAT_BOOLEAN     = 0x01, /**< Not Supported */
@@ -396,7 +396,7 @@ typedef enum
 /**
  * @brief GATT Bluetooth namespace
  */
-typedef enum 
+typedef enum __attribute__ ((__packed__))
 {
   ACI_GATT_NAMESPACE_INVALID  = 0x00,
   ACI_GATT_NAMESPACE_BTSIG    = 0x01 /**< Bluetooth SIG */
@@ -405,7 +405,7 @@ typedef enum
 /**
  * @brief Security key types
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_KEY_TYPE_INVALID  = 0x00,
   ACI_KEY_TYPE_PASSKEY  = 0x01
@@ -415,7 +415,7 @@ typedef enum
  * @enum aci_bond_status_code_t
  * @brief Bond status code
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
  /**
   * Bonding succeeded
@@ -476,7 +476,7 @@ typedef enum
  * @enum aci_bond_status_source_t
  * @brief Source of a bond status code
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
   ACI_BOND_STATUS_SOURCE_INVALID                  = 0x00,
   ACI_BOND_STATUS_SOURCE_LOCAL                    = 0x01,
@@ -488,7 +488,7 @@ typedef enum
  * @enum aci_status_code_t
  * @brief ACI status codes
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
  /**
   * Success

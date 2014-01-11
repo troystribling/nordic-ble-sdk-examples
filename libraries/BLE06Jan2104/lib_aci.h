@@ -27,7 +27,7 @@
  *SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 /* Attention! 
-*  To maintain compliance with Nordic Semiconductor ASA's Bluetooth profile 
+*  To maintain compliance with Nordic Semiconductor ASA’s Bluetooth profile 
 *  qualification listings, this section of source code must not be modified.
 */
 
@@ -45,11 +45,10 @@
 
 
 #include "hal_platform.h"
-#include "hal/hal_aci_tl.h"
+#include "hal_aci_tl.h"
 #include "aci.h"
 #include "aci_cmds.h"
 #include "aci_evts.h"
-
 
 
 
@@ -58,7 +57,7 @@
 #define PIPES_ARRAY_SIZE                ((ACI_DEVICE_MAX_PIPES + 7)/8)
 
 /* Same size as a hal_aci_data_t */
-typedef struct hal_aci_evt_t{
+typedef struct __attribute__ ((__packed__)) hal_aci_evt_t{
   uint8_t   debug_byte;
   aci_evt_t evt;
 } hal_aci_evt_t;
@@ -77,6 +76,8 @@ typedef struct aci_setup_info_t
   uint8_t                       num_setup_msgs;
 } aci_setup_info_t;
 
+
+
 // aci_struct that will contain 
 // total initial credits
 // current credit
@@ -90,10 +91,13 @@ typedef struct aci_setup_info_t
 // Relationship of bond to peer address
 typedef struct aci_state_t
 {
+  aci_pins_t                    aci_pins;                               /* Pins on the MCU used to connect to the nRF8001 */ 
   aci_setup_info_t              aci_setup_info;                         /* Data structures that are created from nRFgo Studio */
   uint8_t                       bonded;                                 /* ( aci_bond_status_code_t ) Is the nRF8001 bonded to a peer device */
   uint8_t                       data_credit_total;                      /* Total data credit available for the specific version of the nRF8001, total equals available when a link is established */
   aci_device_operation_mode_t   device_state;                           /* Operating mode of the nRF8001 */
+  
+  /* */
   
   /* Start : Variables that are valid only when in a connection */
   uint8_t                       data_credit_available;                  /* Available data credits at a specific point of time, ACI_EVT_DATA_CREDIT updates the available credits */

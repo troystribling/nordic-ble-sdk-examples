@@ -95,7 +95,7 @@ Defining number of packets to send
 #endif
 
 /* Store the setup for the nRF8001 in the flash of the AVR to save on RAM */
-static hal_aci_data_ setup_msgs[NB_SETUP_MESSAGES] PROGMEM = SETUP_MESSAGES_CONTENT;
+static hal_aci_data_t setup_msgs[NB_SETUP_MESSAGES] PROGMEM = SETUP_MESSAGES_CONTENT;
 
 // aci_struct that will contain
 // total initial credits
@@ -172,7 +172,7 @@ The ACI Evt Data Credit provides the radio level ack of a transmitted packet.
 */
 void setup(void)
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println(F("Arduino setup"));
 
   /**

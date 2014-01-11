@@ -42,7 +42,7 @@
  * @enum aci_evt_opcode_t
  * @brief ACI event opcodes
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
  /**
   * Invalid event code
@@ -117,7 +117,7 @@ typedef enum
  * @struct aci_evt_params_device_started_t
  * @brief Structure for the ACI_EVT_DEVICE_STARTED event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t device_mode; /**< enum aci_device_operation_mode_t -> Mode in which the device is being started */
   uint8_t hw_error;  /**< enum aci_hw_error_t -> Hardware Error if available for the start */
@@ -128,7 +128,7 @@ typedef struct
  * @struct aci_evt_params_hw_error_t
  * @brief Structure for the ACI_EVT_HW_ERROR event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint16_t line_num;
   uint8_t file_name[20];
@@ -138,7 +138,7 @@ typedef struct
  * @struct aci_evt_cmd_rsp_params_dtm_cmd_t
  * @brief Structure for the ACI_EVT_CMD_RSP event with opcode=ACI_CMD_DTM_CMD event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t  evt_msb;
   uint8_t  evt_lsb;
@@ -149,7 +149,7 @@ typedef struct
  * @brief Structure for the ACI_EVT_CMD_RSP event with opcode=ACI_CMD_READ_DYNAMIC_DATA event return parameters
  * @note Dynamic data chunk size in this event is defined to go up to ACI_PACKET_MAX_LEN - 5
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t seq_no;
   uint8_t dynamic_data[1];
@@ -159,7 +159,7 @@ typedef struct
  * @struct aci_evt_cmd_rsp_params_get_device_version_t
  * @brief Structure for the ACI_EVT_CMD_RSP event with opcode=ACI_CMD_GET_DEVICE_VERSION event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint16_t  configuration_id;
   uint8_t   aci_version;
@@ -172,7 +172,7 @@ typedef struct
  * @struct aci_evt_cmd_rsp_params_get_device_address_t
  * @brief Structure for the ACI_EVT_CMD_RSP event with opcode=ACI_CMD_GET_DEVICE_ADDRESS event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t bd_addr_own[BTLE_DEVICE_ADDRESS_SIZE];
   uint8_t bd_addr_type; /**< enum aci_bd_addr_type_t */
@@ -182,7 +182,7 @@ typedef struct
  * @struct aci_evt_cmd_rsp_params_get_battery_level_t
  * @brief Structure for the ACI_EVT_CMD_RSP event with opcode=ACI_CMD_GET_BATTERY_LEVEL event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint16_t battery_level;
 } aci_evt_cmd_rsp_params_get_battery_level_t;
@@ -191,7 +191,7 @@ typedef struct
  * @struct aci_evt_cmd_rsp_params_get_temperature_t
  * @brief Structure for the ACI_EVT_CMD_RSP event with opcode=ACI_CMD_GET_TEMPERATURE event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   int16_t temperature_value;
 } aci_evt_cmd_rsp_params_get_temperature_t;
@@ -200,14 +200,14 @@ typedef struct
  * @struct aci_evt_params_cmd_rsp_t
  * @brief Structure for the ACI_EVT_CMD_RSP event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t cmd_opcode; /**< enum aci_cmd_opcode_t -> Command opcode for which the event response is being sent */
   uint8_t cmd_status; /**< enum aci_status_code_t -> Status of the command that was sent. Used in the context of the command. */
   union
   {
-    aci_evt_cmd_rsp_params_dtm_cmd_t            dtm_cmd;
-    aci_evt_cmd_rsp_read_dynamic_data_t         read_dynamic_data;
+    aci_evt_cmd_rsp_params_dtm_cmd_t dtm_cmd;
+    aci_evt_cmd_rsp_read_dynamic_data_t read_dynamic_data;
     aci_evt_cmd_rsp_params_get_device_version_t get_device_version;
     aci_evt_cmd_rsp_params_get_device_address_t get_device_address;
     aci_evt_cmd_rsp_params_get_battery_level_t  get_battery_level;
@@ -220,7 +220,7 @@ typedef struct
  * @struct aci_evt_params_connected_t
  * @brief Structure for the ACI_EVT_CONNECTED event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   aci_bd_addr_type_t dev_addr_type;
   uint8_t  dev_addr[BTLE_DEVICE_ADDRESS_SIZE];
@@ -234,7 +234,7 @@ typedef struct
  * @struct aci_evt_params_disconnected_t
  * @brief Structure for the ACI_EVT_DISCONNECTED event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t aci_status; /**< enum aci_status_code_t */
   uint8_t btle_status;
@@ -244,7 +244,7 @@ typedef struct
  * @struct aci_evt_params_bond_status_t
  * @brief Structure for the ACI_EVT_BOND_STATUS event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t status_code;
   uint8_t status_source; /**< enum aci_bond_status_source_t */
@@ -258,7 +258,7 @@ typedef struct
  * @struct aci_evt_params_pipe_status_t
  * @brief Structure for the ACI_EVT_PIPE_STATUS event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t  pipes_open_bitmap[8];
   uint8_t  pipes_closed_bitmap[8];
@@ -268,7 +268,7 @@ typedef struct
  * @struct aci_evt_params_timing_t
  * @brief Structure for the ACI_EVT_TIMING event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint16_t conn_rf_interval;  /**< rf_interval = conn_rf_interval * 1.25 ms Range:0x0006 to 0x0C80 */
   uint16_t conn_slave_rf_latency; /**< Number of RF events the slave can skip */
@@ -279,7 +279,7 @@ typedef struct
  * @struct aci_evt_params_data_credit_t
  * @brief Structure for the ACI_EVT_DATA_CREDIT event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t credit;
 } aci_evt_params_data_credit_t;
@@ -288,7 +288,7 @@ typedef struct
  * @struct aci_evt_params_data_ack_t
  * @brief Structure for the ACI_EVT_DATA_ACK event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t pipe_number;
 } aci_evt_params_data_ack_t;
@@ -297,12 +297,12 @@ typedef struct
  * @struct aci_evt_params_data_received_t
  * @brief Structure for the ACI_EVT_DATA_RECEIVED event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   aci_rx_data_t rx_data;
 } aci_evt_params_data_received_t;
 
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t content[1];
 } error_data_t;
@@ -311,7 +311,7 @@ typedef struct
  * @struct aci_evt_params_pipe_error_t
  * @brief Structure for the ACI_EVT_PIPE_ERROR event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t pipe_number;
   uint8_t error_code;
@@ -325,7 +325,7 @@ typedef struct
  * @struct aci_evt_params_display_passkey_t
  * @brief Structure for the ACI_EVT_DISPLAY_PASSKEY event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t passkey[6];
 } aci_evt_params_display_passkey_t;
@@ -334,7 +334,7 @@ typedef struct
  * @struct aci_evt_params_key_request_t
  * @brief Structure for the ACI_EVT_KEY_REQUEST event return parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t key_type; /**< enum aci_key_type_t */
 } aci_evt_params_key_request_t;
@@ -343,7 +343,7 @@ typedef struct
  * @struct aci_event_params_echo_t
  * @brief  Structure for the ACI_EVT_ECHO ACI event parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t echo_data[ACI_ECHO_DATA_MAX_LEN];
 } aci_evt_params_echo_t;
@@ -352,7 +352,7 @@ typedef struct
  * @struct aci_evt_t
  * @brief  Encapsulates a generic ACI event
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t len;
   uint8_t evt_opcode; /** enum aci_evt_opcode_t */

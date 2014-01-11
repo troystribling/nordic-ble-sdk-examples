@@ -44,7 +44,7 @@
  * @enum aci_cmd_opcode_t
  * @brief ACI command opcodes
  */
-typedef enum
+typedef enum __attribute__ ((__packed__))
 {
  /**
   * Enter test mode
@@ -182,7 +182,7 @@ typedef enum
  * @struct aci_cmd_params_test_t
  * @brief  Structure for the ACI_CMD_TEST ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t test_mode_change; /**< enum aci_test_mode_change_t */
 } aci_cmd_params_test_t;
@@ -191,7 +191,7 @@ typedef struct
  * @struct aci_cmd_params_echo_t
  * @brief  Structure for the ACI_CMD_ECHO ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t echo_data[ACI_ECHO_DATA_MAX_LEN];
 } aci_cmd_params_echo_t;
@@ -200,7 +200,7 @@ typedef struct
  * @struct aci_cmd_params_dtm_cmd_t
  * @brief  Structure for the ACI_CMD_DTM_CMD ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t                 cmd_msb;
   uint8_t                 cmd_lsb;
@@ -210,7 +210,7 @@ typedef struct
  * @struct aci_cmd_params_setup_t
  * @brief  Structure for the ACI_CMD_SETUP ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t                 setup_data[1];
 } aci_cmd_params_setup_t;
@@ -220,7 +220,7 @@ typedef struct
  * @brief  Structure for the ACI_CMD_WRITE_DYNAMIC_DATA ACI command parameters 
  * @note Dynamic data chunk size in this command is defined to go up to ACI_PACKET_MAX_LEN - 3
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t                 seq_no;
   uint8_t                 dynamic_data[1];
@@ -230,7 +230,7 @@ typedef struct
  * @define aci_cmd_params_set_local_data_t
  * @brief  Structure for the ACI_CMD_SET_LOCAL_DATA ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   aci_tx_data_t tx_data;
 } aci_cmd_params_set_local_data_t;
@@ -239,7 +239,7 @@ typedef struct
  * @struct aci_cmd_params_connect_t
  * @brief  Structure for the ACI_CMD_CONNECT ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint16_t        timeout;  /**< 0x0000 (no timeout) to 0x3FFF */
   uint16_t        adv_interval;     /**< 16 bits of advertising interval for general discovery */
@@ -249,7 +249,7 @@ typedef struct
  * @define aci_cmd_params_bond_t
  * @brief  Structure for the ACI_CMD_BOND ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint16_t        timeout;  /**< 0x0000 (no timeout) to 0x3FFF */
   uint16_t        adv_interval;     /**< 16 bits of advertising interval for general discovery */
@@ -259,7 +259,7 @@ typedef struct
  * @struct aci_cmd_params_disconnect_t
  * @brief  Structure for the ACI_CMD_DISCONNECT ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t         reason; /**< enum aci_disconnect_reason_t */
 } aci_cmd_params_disconnect_t;
@@ -268,7 +268,7 @@ typedef struct
  * @struct aci_cmd_params_set_tx_power_t
  * @brief  Structure for the ACI_CMD_SET_TX_POWER ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t   device_power; /**< enum aci_device_output_power_t */
 } aci_cmd_params_set_tx_power_t;
@@ -277,7 +277,7 @@ typedef struct
  * @struct aci_cmd_params_change_timing_t
  * @brief  Structure for the ACI_CMD_CHANGE_TIMING ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   aci_ll_conn_params_t    conn_params;
 } aci_cmd_params_change_timing_t;
@@ -286,7 +286,7 @@ typedef struct
  * @struct aci_cmd_params_open_remote_pipe_t
  * @brief  Structure for the ACI_CMD_OPEN_REMOTE_PIPE ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t pipe_number;
 } aci_cmd_params_open_remote_pipe_t;
@@ -295,7 +295,7 @@ typedef struct
  * @struct aci_cmd_params_send_data_t
  * @brief  Structure for the ACI_CMD_SEND_DATA ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   aci_tx_data_t tx_data;
 } aci_cmd_params_send_data_t;
@@ -304,7 +304,7 @@ typedef struct
  * @define aci_cmd_params_send_data_ack_t
  * @brief  Structure for the ACI_CMD_SEND_DATA_ACK ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t pipe_number;
 } aci_cmd_params_send_data_ack_t;
@@ -313,7 +313,7 @@ typedef struct
  * @struct aci_cmd_params_send_data_t
  * @brief  Structure for the ACI_CMD_SEND_DATA ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t pipe_number;
 } aci_cmd_params_request_data_t;
@@ -322,7 +322,7 @@ typedef struct
  * @define aci_cmd_params_send_data_nack_t
  * @brief  Structure for the ACI_CMD_SEND_DATA_NACK ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t pipe_number;
   uint8_t error_code;
@@ -332,7 +332,7 @@ typedef struct
  * @define aci_cmd_params_set_app_latency_t
  * @brief  Structure for the ACI_CMD_SET_APP_LATENCY ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   aci_app_latency_mode_t mode;
   uint16_t latency;
@@ -342,7 +342,7 @@ typedef struct
  * @define aci_cmd_params_set_key_t
  * @brief  Structure for the ACI_CMD_SET_KEY ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   aci_key_type_t key_type;
   union
@@ -356,7 +356,7 @@ typedef struct
  * @define aci_cmd_params_open_adv_pipe_t
  * @brief  Structure for the ACI_CMD_OPEN_ADV_PIPE ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t pipes[8];
 } aci_cmd_params_open_adv_pipe_t;
@@ -365,7 +365,7 @@ typedef struct
  * @define aci_cmd_params_broadcast_t
  * @brief  Structure for the ACI_CMD_BROADCAST ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint16_t        timeout;  /**< 0x0000 (no timeout) to 0x3FFF */
   uint16_t        adv_interval;     /**< 16 bits of advertising interval for general discovery */
@@ -375,7 +375,7 @@ typedef struct
  * @struct aci_cmd_params_close_remote_pipe_t
  * @brief  Structure for the ACI_CMD_CLOSE_REMOTE_PIPE ACI command parameters
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t pipe_number;
 } aci_cmd_params_close_remote_pipe_t;
@@ -384,7 +384,7 @@ typedef struct
  * @struct aci_cmd_t
  * @brief  Encapsulates a generic ACI command
  */
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t len;        /**< Length of the ACI command */
   uint8_t cmd_opcode; /**< enum aci_cmd_opcode_t -> Opcode of the ACI command */
